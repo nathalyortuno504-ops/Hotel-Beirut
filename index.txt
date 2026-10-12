@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Hotel Beirut - Oruro, Bolivia</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com"></script>
+<!-- FontAwesome Icons -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<!-- Google Fonts Inter -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: {
+                            400: '#e0a96d',
+                            500: '#c59b27',
+                            600: '#a67c1e',
+                            700: '#856114',
+                        },
+                        navy: {
+                            800: '#0f172a',
+                            900: '#0b1120',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .glass-header {
+            background: rgba(15, 23, 42, 0.92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .pulse-btn {
+            animation: pulse-ring 2s infinite;
+        }
+        @keyframes pulse-ring {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.6); }
+            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+        .phone-pulse {
+            animation: phone-ring 2s infinite;
+        }
+        @keyframes phone-ring {
+            0% { box-shadow: 0 0 0 0 rgba(14, 165, 233, 0.6); }
+            70% { box-shadow: 0 0 0 15px rgba(14, 165, 233, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(14, 165, 233, 0); }
+        }
+
+        .room-flip-card { perspective: 1000px; cursor: pointer; }
+        .room-flip-inner { position: relative; width: 100%; height: 100%; transition: transform 0.7s; transform-style: preserve-3d; }
+        .room-flip-card.flipped .room-flip-inner { transform: rotateY(180deg); }
+        .room-flip-front, .room-flip-back { position: absolute; inset: 0; width: 100%; height: 100%; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+        .room-flip-back { transform: rotateY(180deg); }
+
+        .service-flip-card { perspective: 1000px; cursor: pointer; }
+        .service-flip-inner { position: relative; width: 100%; height: 100%; transition: transform 0.7s; transform-style: preserve-3d; }
+        .service-flip-card.flipped .service-flip-inner { transform: rotateY(180deg); }
+        .service-face { position: absolute; inset: 0; width: 100%; height: 100%; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+        .service-back { transform: rotateY(180deg); }
+    </style>
+<style>
+.page-section { display: none; }
+.page-section.active { display: block; }
+html { scroll-behavior: smooth; }
+</style>
+<style id="estilo-sencillo">
+/* Diseño básico para un proyecto escolar */
+html { scroll-behavior: auto !important; }
+body { font-family: Arial, sans-serif !important; background: white !important; color: #222 !important; line-height: 1.5; }
+h1, h2, h3, h4, .font-serif { font-family: Arial, sans-serif !important; letter-spacing: normal !important; }
+header.glass-header { background: #eeeeee !important; color: #222 !important; backdrop-filter: none !important; -webkit-backdrop-filter: none !important; border-bottom: 1px solid #bbb !important; box-shadow: none !important; }
+header .text-white, header .text-slate-300, header .text-gold-400, header .text-gold-300 { color: #222 !important; }
+#mobile-menu { background: #eeeeee !important; border-color: #bbb !important; }
+#mobile-menu a { color: #222 !important; }
+.page-section:not(#inicio) { background: white !important; color: #222 !important; }
+.page-section:not(#inicio) .text-white,
+.page-section:not(#inicio) .text-slate-300,
+.page-section:not(#inicio) .text-slate-400,
+.page-section:not(#inicio) .text-gold-300,
+.page-section:not(#inicio) .text-gold-400 { color: #222 !important; }
+.page-section:not(#inicio) .bg-slate-950,
+.page-section:not(#inicio) .bg-slate-900,
+.page-section:not(#inicio) .bg-slate-800,
+.page-section:not(#inicio) .bg-slate-900\/80,
+.page-section:not(#inicio) .bg-slate-950\/80 { background: #f2f2f2 !important; }
+.page-section:not(#inicio) [class*="border-slate-"],
+.page-section:not(#inicio) [class*="border-gold-"] { border-color: #cccccc !important; }
+.bg-gold-500, .bg-gold-600, .bg-gradient-to-r.from-gold-500 { background: #d9e8f5 !important; color: #222 !important; }
+.text-gold-400, .text-gold-300 { color: #174a75 !important; }
+.rounded-3xl, .rounded-2xl, .rounded-xl, .rounded-lg { border-radius: 3px !important; }
+.shadow-xl, .shadow-2xl, .shadow-lg, .shadow-md, .shadow-sm { box-shadow: none !important; }
+.pulse-btn, .phone-pulse { animation: none !important; }
+.room-flip-card { perspective: 900px !important; cursor: pointer; }
+.room-flip-inner { transition: transform .6s !important; transform-style: preserve-3d !important; }
+.room-flip-card.flipped .room-flip-inner { transform: rotateY(180deg) !important; }
+.room-flip-front, .room-flip-back { position: absolute; inset: 0; width: 100%; height: 100%; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+.room-flip-back { transform: rotateY(180deg); }
+.room-flip-card img { width: 100%; height: 100%; object-fit: cover; }
+.service-flip-card, .service-flip-inner, .service-face { display: none !important; }
+button, a { transition: none !important; }
+input, select, textarea, button { border-radius: 3px !important; box-shadow: none !important; }
+img { max-width: 100%; }
+@media (max-width: 768px) { header .h-20 { height: auto !important; min-height: 60px !important; } }
+</style>
+
+
+<style id="funciones-solicitadas">
+.carnaval-carousel{position:relative;max-width:850px;height:300px;margin:0 auto 24px;overflow:hidden;background:#e9e9e9;border:1px solid #bbb;color:#fff;text-align:left}
+.carnaval-carousel>img{width:100%;height:100%;object-fit:cover;display:block}
+.carnaval-caption{position:absolute;left:0;right:0;bottom:0;padding:22px 55px 36px;background:linear-gradient(transparent,rgba(0,0,0,.82));color:white}
+.carnaval-caption strong{font-size:22px}.carnaval-caption p{margin-top:5px;font-size:14px}
+.carnaval-prev,.carnaval-next{position:absolute;top:45%;background:rgba(0,0,0,.65);color:white;border:0;padding:10px 13px;cursor:pointer}.carnaval-prev{left:10px}.carnaval-next{right:10px}.carnaval-dots{position:absolute;bottom:8px;right:18px;display:flex;gap:8px}.carnaval-dots button{color:white;background:transparent;border:0;cursor:pointer}
+.servicios-lista{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;max-width:1100px;margin:0 auto}.servicio-item{display:flex;flex-direction:column;overflow:hidden;border:1px solid #e5e1d5;background:#fff;color:#252525;box-shadow:0 3px 10px rgba(0,0,0,.12);padding:0;text-align:center}.servicio-foto{height:220px;position:relative;overflow:hidden;background:#ddd}.servicio-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .25s}.servicio-item:hover img{transform:scale(1.04)}.servicio-etiqueta{position:absolute;top:16px;left:0;background:#b92b2b;color:#fff;padding:7px 14px;font-size:12px;font-weight:bold;letter-spacing:.5px}.servicio-cuerpo{padding:22px 20px 24px;display:flex;flex-direction:column;align-items:center;flex:1}.servicio-item h3{font-size:21px;font-weight:bold;color:#a9945c;margin:0 0 12px}.servicio-item p{font-size:15px;line-height:1.5;margin:0 0 18px;color:#555;flex:1}.servicio-consultar{display:inline-block;border:2px solid #a9945c;background:#fff;color:#292929;padding:10px 24px;font-weight:bold;cursor:pointer}.servicio-consultar:hover{background:#a9945c;color:#fff}
+.boton-tarifa{background:#d9e8f5;color:#222;border:1px solid #9dbbd2;padding:8px 14px;border-radius:8px;cursor:pointer;font-weight:bold}.boton-tarifa:hover{background:#bcd7ee}
+.boton-reservar{display:block;width:100%;margin-top:14px;background:#d9e8f5;color:#222;border:1px solid #9dbbd2;padding:10px;cursor:pointer;font-weight:bold}
+.room-flip-card{height:256px;position:relative;overflow:hidden}.room-flip-inner{height:100%;width:100%;position:relative}
+@media(max-width:700px){.servicios-lista{grid-template-columns:1fr}.servicio-foto{height:210px}}
+@media(max-width:600px){.carnaval-carousel{height:230px}.carnaval-caption{padding:14px 42px 32px}.carnaval-caption strong{font-size:17px}}
+</style>
+
+</head><body><header class="fixed top-0 left-0 w-full z-40 glass-header border-b border-slate-800 transition-all duration-300">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex items-center justify-between h-20">
+<!-- Logo -->
+<a class="flex items-center gap-3 group" href="#inicio" onclick="showPage('inicio'); return false;">
+<div class="w-12 h-12 rounded-full border-2 border-gold-500/80 flex items-center justify-center bg-dark-800 shadow-inner overflow-hidden">
+    <img src="margenn.jpg"
+         alt="Logo Hotel Beirut"
+         class="w-full h-full object-cover">
+</div>
+<div>
+<span class="font-serif text-2xl font-bold tracking-wider text-white block leading-none">HOTEL BEIRUT</span>
+<span class="text-[10px] uppercase tracking-[0.25em] text-gold-400 font-semibold block mt-1">Confort &amp; Calidez</span>
+</div>
+</a>
+<!-- Menú Escritorio -->
+<nav class="hidden md:flex items-center gap-8">
+<!-- Enlace Inicio Funcional -->
+<a class="text-sm font-medium text-white hover:text-gold-400 transition-colors py-2 border-b-2 border-gold-500" href="#inicio" onclick="showPage('inicio'); return false;">Inicio</a>
+<a class="text-sm font-medium text-slate-300 hover:text-gold-400 transition-colors py-2 border-b-2 border-transparent hover:border-gold-400" href="#historia" onclick="showPage('historia'); return false;">Historia</a>
+<a class="text-sm font-medium text-slate-300 hover:text-gold-400 transition-colors py-2 border-b-2 border-transparent hover:border-gold-400" href="#habitaciones" onclick="showPage('habitaciones'); return false;">Habitaciones</a>
+<a class="text-sm font-medium text-slate-300 hover:text-gold-400 transition-colors py-2 border-b-2 border-transparent hover:border-gold-400" href="#tarifas" onclick="showPage('tarifas'); return false;">Tarifas</a>
+<a class="text-sm font-medium text-slate-300 hover:text-gold-400 transition-colors py-2 border-b-2 border-transparent hover:border-gold-400" href="#servicios" onclick="showPage('servicios'); return false;">Servicios</a>
+<a class="text-sm font-medium text-slate-300 hover:text-gold-400 transition-colors py-2 border-b-2 border-transparent hover:border-gold-400" href="#ubicacion" onclick="showPage('ubicacion'); return false;">¿Cómo Llegar?</a>
+<a class="text-sm font-medium text-slate-300 hover:text-gold-400 transition-colors py-2 border-b-2 border-transparent hover:border-gold-400" href="#contacto" onclick="showPage('contacto'); return false;">Contacto</a>
+</nav>
+<!-- Botón Menú Móvil -->
+<button aria-label="Abrir Menú" class="md:hidden text-slate-300 hover:text-white p-2 text-2xl focus:outline-none" id="mobile-menu-btn" onclick="toggleMobileMenu()">
+<i class="fa-solid fa-bars" id="menu-icon"></i>
+</button>
+</div>
+</div>
+<!-- Menú Móvil Desplegable -->
+<div class="hidden md:hidden bg-slate-900/95 border-b border-slate-800 px-4 pt-3 pb-6 space-y-3" id="mobile-menu">
+<a class="block py-2 text-base font-medium text-gold-400 border-b border-slate-800" href="#inicio" onclick="showPage('inicio'); return false;"><i class="fa-solid fa-house mr-2"></i> Inicio</a>
+<a class="block py-2 text-base font-medium text-slate-300 hover:text-gold-400 border-b border-slate-800" href="#historia" onclick="showPage('historia'); return false;"><i class="fa-solid fa-film mr-2"></i> Historia</a>
+<a class="block py-2 text-base font-medium text-slate-300 hover:text-gold-400 border-b border-slate-800" href="#habitaciones" onclick="showPage('habitaciones'); return false;"><i class="fa-solid fa-bed mr-2"></i> Habitaciones</a>
+<a class="block py-2 text-base font-medium text-slate-300 hover:text-gold-400 border-b border-slate-800" href="#tarifas" onclick="showPage('tarifas'); return false;"><i class="fa-solid fa-tags mr-2"></i> Tarifas</a>
+<a class="block py-2 text-base font-medium text-slate-300 hover:text-gold-400 border-b border-slate-800" href="#servicios" onclick="showPage('servicios'); return false;"><i class="fa-solid fa-concierge-bell mr-2"></i> Servicios</a>
+<a class="block py-2 text-base font-medium text-slate-300 hover:text-gold-400 border-b border-slate-800" href="#ubicacion" onclick="showPage('ubicacion'); return false;"><i class="fa-solid fa-map-location-dot mr-2"></i> ¿Cómo Llegar?</a>
+<a class="block py-2 text-base font-medium text-slate-300 hover:text-gold-400" href="#contacto" onclick="showPage('contacto'); return false;"><i class="fa-solid fa-envelope mr-2"></i> Contacto</a>
+<button class="w-full mt-3 bg-gold-500 text-slate-950 font-bold py-3 rounded-xl text-center shadow-lg" onclick="toggleMobileMenu(); openReservaModal()">
+                Reservar Ahora
+            </button>
+</div>
+</header><section class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden page-section" id="inicio">
+<!-- Imagen de fondo del inicio -->
+<img alt="Hotel Beirut Exterior" class="absolute inset-0 z-0 w-full h-full object-cover object-center" onerror="this.onerror=null; this.src='fp.jpg'" src="fp.jpg" style="filter:none; opacity:1;"/>
+<!-- Capa negra suave para oscurecer un poco la foto, sin degradado azul -->
+<div class="absolute inset-0 z-0 bg-black/30 pointer-events-none"></div>
+<div class="relative z-10 max-w-5xl mx-auto px-4 text-center mt-12 mb-16">
+<h1 class="font-serif text-4xl sm:text-6xl md:text-6xl font-bold text-white tracking-tight leading-tight mb-6">
+Experiencia Única en Hotel Beirut <span class="text-transparent bg-clip-text bg-gradient-to-r from-gold-300 via-gold-400 to-amber-200">Hospitalidad &amp; Confort</span>
+</h1>
+<p class="text-slate-300 text-base sm:text-xl max-w-2xl mx-auto font-light leading-relaxed mb-10">
+                Disfrute de habitaciones equipadas, atención personalizada las 24 horas y la mejor ubicación estratégica para su viaje de negocios o descanso.
+            </p>
+<!-- Carrusel sencillo para promocionar el Carnaval de Oruro -->
+<div class="carnaval-carousel" aria-label="Imágenes del Carnaval de Oruro">
+  <img id="carnaval-slide" src="https://commons.wikimedia.org/wiki/Special:FilePath/Carnaval_de_Oruro.jpg?width=1200" alt="Danzante del Carnaval de Oruro" onerror="this.onerror=null;this.src='https://commons.wikimedia.org/wiki/Special:FilePath/El_carnaval_de_Oruro.jpg?width=1200';">
+  <div class="carnaval-caption"><strong id="carnaval-title">Viva la magia del Carnaval de Oruro</strong><p id="carnaval-text">Música, danza y tradición a pocos pasos de una estadía cómoda.</p></div>
+  <button type="button" class="carnaval-prev" aria-label="Imagen anterior" onclick="cambiarCarnaval(-1)">❮</button>
+  <button type="button" class="carnaval-next" aria-label="Imagen siguiente" onclick="cambiarCarnaval(1)">❯</button>
+  <div class="carnaval-dots"><button type="button" onclick="irCarnaval(0)" aria-label="Imagen 1">●</button><button type="button" onclick="irCarnaval(1)" aria-label="Imagen 2">●</button><button type="button" onclick="irCarnaval(2)" aria-label="Imagen 3">●</button></div>
+</div>
+<!-- Barra de Búsqueda Rápida de Reserva -->
+<div class="bg-slate-900/90 border border-slate-700/80 p-4 sm:p-6 rounded-2xl sm:rounded-full shadow-2xl backdrop-blur-xl max-w-4xl mx-auto">
+<form class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 text-left items-center" onsubmit="handleQuickSearch(event)">
+<div class="px-3 py-1">
+<label class="block text-xs uppercase font-semibold text-slate-400 mb-1"><i class="fa-solid fa-calendar-days text-gold-400 mr-1"></i> Entrada</label>
+<input class="w-full bg-slate-800/80 border border-slate-700 text-white rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-gold-500" id="hero-checkin" required="" type="date"/>
+</div>
+<div class="px-3 py-1">
+<label class="block text-xs uppercase font-semibold text-slate-400 mb-1"><i class="fa-solid fa-calendar-check text-gold-400 mr-1"></i> Salida</label>
+<input class="w-full bg-slate-800/80 border border-slate-700 text-white rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-gold-500" id="hero-checkout" required="" type="date"/>
+</div>
+<div class="px-3 py-1">
+<label class="block text-xs uppercase font-semibold text-slate-400 mb-1"><i class="fa-solid fa-user-group text-gold-400 mr-1"></i> Huéspedes</label>
+<select class="w-full bg-slate-800/80 border border-slate-700 text-white rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-gold-500" id="hero-guests">
+<option value="1">1 Persona</option>
+<option selected="" value="2">2 Personas</option>
+<option value="3">3 Personas</option>
+<option value="4+">Familiar (4+)</option>
+</select>
+</div>
+<div class="px-2">
+<button class="w-full bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-600 hover:to-gold-700 text-slate-950 font-bold py-3 px-6 rounded-xl sm:rounded-full shadow-lg transition-all hover:scale-105 flex items-center justify-center gap-2 text-sm" onclick="showPage('tarifas'); return false;" type="button">
+<i class="fa-solid fa-magnifying-glass"></i> Consultar
+                        </button>
+</div>
+</form>
+</div>
+</div>
+</section><section class="py-24 bg-slate-950 relative border-t border-slate-800 page-section" id="historia" style="display:none;">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center max-w-3xl mx-auto mb-16">
+<span class="text-gold-400 text-xs font-semibold uppercase tracking-widest block mb-2"><i class="fa-solid fa-heart mr-1"></i> Nuestra Esencia</span>
+<h2 class="font-serif text-3xl sm:text-5xl font-bold text-white mb-4">La Historia del Hotel Beirut</h2>
+<div class="w-20 h-1 bg-gold-500 mx-auto rounded-full mb-6"></div>
+<p class="text-slate-300 text-base sm:text-lg font-light leading-relaxed">
+                    Un sueño familiar convertido en referente de hospitalidad. Conoce la visión de nuestros fundadores y la calidez que nos caracteriza desde nuestros inicios.
+                </p>
+</div>
+<div class="grid grid-cols-1 gap-10 items-start">
+<!-- Vídeo de presentación centrado, separado del texto -->
+<div class="w-full max-w-4xl mx-auto">
+<div class="relative bg-slate-900 border border-slate-800 rounded-3xl p-3 shadow-2xl overflow-hidden group">
+<!-- Contenedor del Vídeo de Presentación -->
+<div class="relative aspect-video rounded-2xl overflow-hidden bg-slate-950 flex items-center justify-center">
+<video controls playsinline preload="metadata" class="block w-full h-full object-contain">
+  <source src="videos/video%201.mp4" type="video/mp4">
+  Tu navegador no puede reproducir este vídeo.
+</video>
+</div>
+<div class="p-4 flex items-center justify-between text-xs text-slate-400">
+<span class="flex items-center gap-2"><i class="fa-solid fa-circle-play text-gold-400 text-base"></i> Video Presentación Oficial del Hotel</span>
+<span class="bg-slate-800 px-3 py-1 rounded-full text-gold-300 font-semibold">Duración 0:38s </span>
+</div>
+</div>
+</div>
+<!-- Texto y tarjeta de los dueños debajo del vídeo -->
+<div class="w-full max-w-4xl mx-auto space-y-6">
+<div class="bg-slate-900/80 border border-slate-800 p-8 rounded-3xl backdrop-blur-sm relative">
+<i class="fa-solid fa-quote-right text-5xl text-gold-500/10 absolute top-6 right-6"></i>
+<h3 class="font-serif text-2xl font-bold text-gold-400 mb-4">"Nuestra prioridad es hacerte sentir como en casa"</h3>
+<p class="text-slate-300 text-sm sm:text-base leading-relaxed mb-6">
+La historia del Hotel Beirut comenzó en 2015, cuando una familia de Oruro decidió convertir una antigua idea familiar en un proyecto dedicado a recibir y atender a visitantes de la ciudad.
+Todo comenzó con el sueño de la familia Haddad, una familia de origen boliviano con raíces familiares vinculadas al Líbano. Durante años, la familia estuvo relacionada con pequeños negocios comerciales y tuvo la oportunidad de conocer a personas de diferentes lugares que llegaban a Oruro por motivos de trabajo, turismo y, especialmente, durante el Carnaval.
+Fue precisamente durante una temporada de Carnaval cuando surgió la idea de crear un lugar donde los visitantes pudieran sentirse cómodos y recibir una atención cercana y familiar. El proyecto comenzó de manera pequeña, pero con el objetivo de convertirse con el tiempo en un establecimiento reconocido dentro de la ciudad.
+En 2015, después de varios meses de planificación y preparación, nació oficialmente el Hotel Beirut. El nombre fue elegido como un homenaje a las raíces familiares y a la ciudad de Beirut, símbolo de la cultura y hospitalidad libanesa.
+
+                        </p>
+<!-- Perfil / Tarjeta de Presentación de los Dueños -->
+<div>
+<h4 class="font-bold text-white text-base">Familia Fundadora Beirut</h4>
+<p class="text-xs text-gold-400 font-medium">Propietarios &amp; Dirección General</p>
+<p class="text-xs text-slate-400 mt-0.5"><i class="fa-solid fa-award text-gold-500 mr-1"></i> +11 años brindando hospitalidad de excelencia</p>
+</div>
+</div>
+<!-- Misión y visión debajo del video y la historia -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-10">
+  <div class="bg-slate-900 border border-gold-500/30 p-5 rounded-2xl">
+    <h3 class="font-serif text-xl font-bold text-gold-400 mb-2"><i class="fa-solid fa-bullseye mr-2"></i>Misión</h3>
+    <p class="text-slate-300 text-sm leading-relaxed">Brindar a nuestros huéspedes una estadía cómoda y segura, con atención amable y un ambiente familiar que los haga sentir como en casa.</p>
+  </div>
+  <div class="bg-slate-900 border border-gold-500/30 p-5 rounded-2xl">
+    <h3 class="font-serif text-xl font-bold text-gold-400 mb-2"><i class="fa-solid fa-eye mr-2"></i>Visión</h3>
+    <p class="text-slate-300 text-sm leading-relaxed">Ser un hotel reconocido en Oruro por su buena atención, comodidad y compromiso con los visitantes que llegan a conocer nuestra ciudad.</p>
+  </div>
+</div>
+</div>
+</section><section class="py-24 bg-slate-900 relative page-section" id="habitaciones" style="display:none;">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center max-w-3xl mx-auto mb-16">
+<span class="text-gold-400 text-xs font-semibold uppercase tracking-widest block mb-2"><i class="fa-solid fa-bed mr-1"></i> Descanso Máximo</span>
+<h2 class="font-serif text-3xl sm:text-5xl font-bold text-white mb-4">Nuestras Habitaciones &amp; Salas de Estar.</h2>
+<div class="w-20 h-1 bg-gold-500 mx-auto rounded-full mb-6"></div>
+<p class="text-slate-300 text-base">Diseñadas para brindarle tranquilidad, aislamiento acústico y la máxima comodidad durante su estadía.</p>
+</div>
+<!-- Grid de Habitaciones -->
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8">
+   <!-- Habitación 1: Individual -->
+    <div class="bg-slate-950 border border-slate-800 rounded-3xl overflow-hidden shadow-xl hover:border-gold-500/50 transition-all duration-300 flex flex-col group">
+        <div class="relative h-64 overflow-hidden room-flip-card" title="Toca o pasa el cursor para ver otra imagen">
+            <div class="room-flip-inner">
+                <div class="room-flip-front">
+                    <img src="hj.jpg"alt="Habitación Individual" class="w-full h-full object-cover">
+                </div>
+                <div class="room-flip-back">
+                    <img src="hg.jpg" alt="Interior Habitación Individual" class="w-full h-full object-cover">
+                </div>
+            </div>
+            <div class="absolute top-4 right-4 bg-slate-950/80 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold text-gold-400 border border-gold-500/30">
+                Popular
+            </div>
+        </div>
+
+        <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+            <div>
+                <div class="flex justify-between items-baseline mb-2">
+                    <h3 class="font-serif text-xl font-bold text-white">Habitación Individual</h3>
+                </div>
+                <p class="text-xs text-slate-400 mb-4">Ideal para ejecutivos o viajeros individuales. Cama confortable y ambiente acogedor.</p>
+                <div class="flex flex-wrap gap-2 mb-4">
+                    <span class="bg-slate-900 text-slate-300 text-[11px] px-2.5 py-1 rounded-md border border-slate-800"><i class="fa-solid fa-wifi text-gold-400 mr-1"></i> Wi-Fi Alta Velocidad</span>
+                    <span class="bg-slate-900 text-slate-300 text-[11px] px-2.5 py-1 rounded-md border border-slate-800"><i class="fa-solid fa-tv text-gold-400 mr-1"></i> Smart TV</span>
+                    <span class="bg-slate-900 text-slate-300 text-[11px] px-2.5 py-1 rounded-md border border-slate-800"><i class="fa-solid fa-shower text-gold-400 mr-1"></i> Baño Privado / Agua Caliente</span>
+                </div>
+            </div>
+            <div class="pt-4 border-t border-slate-900 flex items-center justify-between">
+                <div>
+                    <span class="text-xs text-slate-400 block">Desde</span>
+                    <span class="text-2xl font-bold text-gold-400 font-serif">80 BOB <span class="text-xs text-slate-400 font-sans font-normal">/ noche</span></span>
+                </div>
+                <button type="button" class="boton-reservar" onclick="irAContacto(this)" data-room="Habitación Individual">Reservar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Habitación 2: Doble / Matrimonial -->
+    <div class="bg-slate-950 border border-slate-800 rounded-3xl overflow-hidden shadow-xl hover:border-gold-500/50 transition-all duration-300 flex flex-col group">
+        <div class="relative h-64 overflow-hidden room-flip-card" title="Toca o pasa el cursor para ver otra imagen">
+            <div class="room-flip-inner">
+                <div class="room-flip-front">
+                    <img src="hy.jpg" alt="Habitación Doble o Matrimonial" class="w-full h-full object-cover">
+                </div>
+                <div class="room-flip-back">
+                    <img src="gf.jpg" alt="Interior de Habitación Doble" class="w-full h-full object-cover">
+                </div>
+            </div>
+        </div>
+
+        <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+            <div>
+                <h3 class="font-serif text-xl font-bold text-white mb-2">Habitación Doble o Matrimonial</h3>
+                <p class="text-xs text-slate-400 mb-4">Equipada con 2 camas de 1.5 plazas o 1 cama matrimonial espaciosa.</p>
+                <div class="flex flex-wrap gap-2 mb-4">
+                    <span class="bg-slate-900 text-slate-300 text-[11px] px-2.5 py-1 rounded-md border border-slate-800"><i class="fa-solid fa-wifi text-gold-400 mr-1"></i> Wi-Fi Alta Velocidad</span>
+                    <span class="bg-slate-900 text-slate-300 text-[11px] px-2.5 py-1 rounded-md border border-slate-800"><i class="fa-solid fa-shower text-gold-400 mr-1"></i> Baño Privado / Agua Caliente</span>
+                </div>
+            </div>
+            <div class="pt-4 border-t border-slate-900 flex items-center justify-between">
+                <div>
+                    <span class="text-xs text-slate-400 block">Desde</span>
+                    <span class="text-2xl font-bold text-gold-400 font-serif">150 BOB <span class="text-xs text-slate-400 font-sans font-normal">/ noche</span></span>
+                </div>
+                <button type="button" class="boton-reservar" onclick="irAContacto(this)" data-room="Habitación Doble o Matrimonial">Reservar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Habitación 3: Suite Familiar -->
+    <div class="bg-slate-950 border border-slate-800 rounded-3xl overflow-hidden shadow-xl hover:border-gold-500/50 transition-all duration-300 flex flex-col group">
+        <div class="relative h-64 overflow-hidden room-flip-card" title="Toca o pasa el cursor para ver otra imagen">
+            <div class="room-flip-inner">
+                <div class="room-flip-front">
+                    <img src="fd.jpg" alt="Suite Familiar Beirut" class="w-full h-full object-cover">
+                </div>
+                <div class="room-flip-back">
+                    <img src="ds.jpg" alt="Interior de Suite Familiar Beirut" class="w-full h-full object-cover">
+                </div>
+            </div>
+            <div class="absolute top-4 right-4 bg-gold-500 text-slate-950 px-3 py-1 rounded-full text-xs font-bold shadow">
+
+            </div>
+        </div>
+
+        <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+            <div>
+                <h3 class="font-serif text-xl font-bold text-white mb-2">Suite Familiar</h3>
+                <p class="text-xs text-slate-400 mb-4">Amplia suite con ambiente independiente, excelente iluminación y vistas a la ciudad.</p>
+                <div class="flex flex-wrap gap-2 mb-4">
+                    <span class="bg-slate-900 text-slate-300 text-[11px] px-2.5 py-1 rounded-md border border-slate-800"><i class="fa-solid fa-couch text-gold-400 mr-1"></i> Sala / Vista Ciudad</span>
+                    <span class="bg-slate-900 text-slate-300 text-[11px] px-2.5 py-1 rounded-md border border-slate-800"><i class="fa-solid fa-bell text-gold-400 mr-1"></i> Servicio a la Habitación</span>
+                </div>
+            </div>
+            <div class="pt-4 border-t border-slate-900 flex items-center justify-between">
+                <div>
+                    <span class="text-xs text-slate-400 block">Desde</span>
+                    <span class="text-2xl font-bold text-gold-400 font-serif">350 BOB <span class="text-xs text-slate-400 font-sans font-normal">/ noche</span></span>
+                </div>
+                <button type="button" class="boton-reservar" onclick="irAContacto(this)" data-room="Suite Familiar">Reservar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Habitación 4: Triple Familiar -->
+    <div class="bg-slate-950 border border-slate-800 rounded-3xl overflow-hidden shadow-xl hover:border-gold-500/50 transition-all duration-300 flex flex-col group">
+        <div class="relative h-64 overflow-hidden room-flip-card" title="Toca o pasa el cursor para ver otra imagen">
+            <div class="room-flip-inner">
+                <div class="room-flip-front">
+                    <img src="de.jpg" alt="Habitación Triple Familiar" class="w-full h-full object-cover">
+                </div>
+                <div class="room-flip-back">
+                    <img src="re.webp" alt="Interior de Habitación Triple Familiar" class="w-full h-full object-cover">
+                </div>
+            </div>
+        </div>
+
+        <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+            <div>
+                <h3 class="font-serif text-xl font-bold text-white mb-2">Habitación Triple Familiar</h3>
+                <p class="text-xs text-slate-400 mb-4">Espaciosa habitación para familias o grupos, con camas independientes y espacio cómodo.</p>
+                <div class="flex flex-wrap gap-2 mb-4">
+                    <span class="bg-slate-900 text-slate-300 text-[11px] px-2.5 py-1 rounded-md border border-slate-800"><i class="fa-solid fa-wifi text-gold-400 mr-1"></i> Wi-Fi Alta Velocidad</span>
+                    <span class="bg-slate-900 text-slate-300 text-[11px] px-2.5 py-1 rounded-md border border-slate-800"><i class="fa-solid fa-shower text-gold-400 mr-1"></i> Baño Privado / Agua Caliente</span>
+                </div>
+            </div>
+            <div class="pt-4 border-t border-slate-900 flex items-center justify-between">
+                <div>
+                    <span class="text-xs text-slate-400 block">Desde</span>
+                    <span class="text-2xl font-bold text-gold-400 font-serif">400 BOB <span class="text-xs text-slate-400 font-sans font-normal">/ noche</span></span>
+                </div>
+                <button type="button" class="boton-reservar" onclick="irAContacto(this)" data-room="Habitación Triple Familiar">Reservar</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+</section><section class="py-24 bg-slate-950 relative border-t border-slate-800 scroll-mt-20 page-section" id="tarifas" style="display:none;">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center max-w-3xl mx-auto mb-14">
+<span class="text-gold-400 text-xs font-semibold uppercase tracking-widest block mb-2">
+<i class="fa-solid fa-tags mr-1"></i> Precios por noche
+                </span>
+<h2 class="font-serif text-3xl sm:text-5xl font-bold text-white mb-4">Tarifas de Habitaciones</h2>
+<div class="w-20 h-1 bg-gold-500 mx-auto rounded-full mb-6"></div>
+<p class="text-slate-300 text-base">Consulta nuestras tarifas y elige la habitación que mejor se adapte a tu estadía.</p>
+</div>
+<div class="overflow-hidden rounded-3xl border border-slate-800 shadow-2xl bg-slate-900">
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead class="bg-slate-800/80">
+<tr>
+<th class="px-6 py-5 text-xs uppercase tracking-wider text-gold-400">Tipo de habitación</th>
+<th class="px-6 py-5 text-xs uppercase tracking-wider text-gold-400">Habitaciones</th>
+<th class="px-6 py-5 text-xs uppercase tracking-wider text-gold-400">Capacidad</th>
+<th class="px-6 py-5 text-xs uppercase tracking-wider text-gold-400 text-right">Precio por noche</th>
+<th class="px-6 py-5 text-xs uppercase tracking-wider text-gold-400 text-center">Elegir</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-800">
+<tr class="hover:bg-slate-800/40 transition-colors">
+<td class="px-6 py-5 font-semibold text-white">Individual</td>
+<td class="px-6 py-5 text-slate-300">1, 5, 7, 10</td>
+<td class="px-6 py-5 text-slate-300">1 persona</td>
+<td class="px-6 py-5 text-right font-serif text-xl font-bold text-gold-400">Bs 80</td>
+<td class="px-6 py-5 text-center"><button type="button" class="boton-tarifa" onclick="elegirTarifa('Individual')">Elegir</button></td>
+</tr>
+<tr class="hover:bg-slate-800/40 transition-colors">
+<td class="px-6 py-5 font-semibold text-white">Doble o Matrimonial</td>
+<td class="px-6 py-5 text-slate-300">8, 9</td>
+<td class="px-6 py-5 text-slate-300">2 personas</td>
+<td class="px-6 py-5 text-right font-serif text-xl font-bold text-gold-400">Bs 150</td>
+<td class="px-6 py-5 text-center"><button type="button" class="boton-tarifa" onclick="elegirTarifa('Doble o Matrimonial')">Elegir</button></td>
+</tr>
+<tr class="hover:bg-slate-800/40 transition-colors">
+<td class="px-6 py-5 font-semibold text-white">Familiar</td>
+<td class="px-6 py-5 text-slate-300">3, 11</td>
+<td class="px-6 py-5 text-slate-300">3 personas</td>
+<td class="px-6 py-5 text-right font-serif text-xl font-bold text-gold-400">Bs 350</td>
+<td class="px-6 py-5 text-center"><button type="button" class="boton-tarifa" onclick="elegirTarifa('Familiar')">Elegir</button></td>
+</tr>
+<tr class="hover:bg-slate-800/40 transition-colors">
+<td class="px-6 py-5 font-semibold text-white">Suite</td>
+<td class="px-6 py-5 text-slate-300">2, 4, 6</td>
+<td class="px-6 py-5 text-slate-300">4 personas</td>
+<td class="px-6 py-5 text-right font-serif text-xl font-bold text-gold-400">Bs 400</td>
+<td class="px-6 py-5 text-center"><button type="button" class="boton-tarifa" onclick="elegirTarifa('Suite')">Elegir</button></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-6 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4">
+<p class="text-xs text-slate-400 text-center sm:text-left">
+<i class="fa-solid fa-circle-info text-gold-400 mr-1"></i>
+                        Tarifas expresadas en bolivianos (Bs) por noche.
+                    </p>
+</div>
+</div>
+</div>
+</section><section class="py-16 page-section" id="servicios" style="display:none;background:#fff;color:#252525;">
+ <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <div class="text-center max-w-3xl mx-auto mb-12">
+   <span style="color:#a9945c;font-weight:bold;letter-spacing:2px;font-size:13px;">CONOCE NUESTROS BENEFICIOS</span>
+   <h2 class="text-3xl sm:text-5xl font-bold mt-2 mb-4">Nuestros Servicios</h2>
+   <div style="height:3px;width:150px;background:#a9945c;margin:0 auto 22px;position:relative;"><span style="position:absolute;width:10px;height:10px;border-radius:50%;background:#a9945c;top:-3px;left:calc(50% - 5px);"></span></div>
+   <p style="color:#666;line-height:1.6;">Pensamos en los detalles para que disfrutes una estadía cómoda y agradable en el Hotel Beirut.</p>
+  </div>
+  <div class="servicios-lista">
+   <article class="servicio-item"><div class="servicio-foto"><img src="wifi.jpg" alt="Persona usando internet por Wi-Fi" onerror="this.src='https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=900&q=80'"><span class="servicio-etiqueta">ALTA VELOCIDAD</span></div><div class="servicio-cuerpo"><h3>Wi-Fi de alta velocidad</h3><p>Conéctate a internet para estudiar, trabajar o compartir tus mejores momentos durante tu estadía.</p><button class="servicio-consultar" onclick="showPage('contacto')">Consultar</button></div></article>
+   <article class="servicio-item"><div class="servicio-foto"><img src="garaje.jpg" alt="Estacionamiento para huéspedes" onerror="this.src='https://images.unsplash.com/photo-1506521781263-d8422e82f27a?auto=format&fit=crop&w=900&q=80'"><span class="servicio-etiqueta">COMODIDAD</span></div><div class="servicio-cuerpo"><h3>Estacionamiento</h3><p>Un espacio para estacionar tu vehículo y disfrutar de una estadía con mayor comodidad.</p><button class="servicio-consultar" onclick="showPage('contacto')">Consultar</button></div></article>
+   <article class="servicio-item"><div class="servicio-foto"><img src="petss.jpg" alt="Mascota acompañando a su familia" onerror="this.src='https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&w=900&q=80'"><span class="servicio-etiqueta">PET FRIENDLY</span></div><div class="servicio-cuerpo"><h3>Ingreso con mascotas</h3><p>Tu mascota también puede acompañarte. Consulta con recepción las condiciones antes de tu llegada.</p><button class="servicio-consultar" onclick="showPage('contacto')">Consultar</button></div></article>
+   <article class="servicio-item"><div class="servicio-foto"><img src="radiadores.jpg" alt="Habitación acogedora" onerror="this.src='https://images.unsplash.com/photo-1611892440504-42a792e24d32?auto=format&fit=crop&w=900&q=80'"><span class="servicio-etiqueta">MAYOR CONFORT</span></div><div class="servicio-cuerpo"><h3>Habitaciones con calefacción</h3><p>Algunos cuartos cuentan con calefacción para que puedas descansar con más comodidad en días fríos.</p><button class="servicio-consultar" onclick="showPage('contacto')">Consultar</button></div></article>
+  </div>
+ </div>
+</section><section class="py-24 bg-slate-900 relative border-t border-slate-800 page-section" id="ubicacion"id="ubicacion" style="display:none;">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center max-w-3xl mx-auto mb-16">
+<span class="text-gold-400 text-xs font-semibold uppercase tracking-widest block mb-2"><i class="fa-solid fa-map-location-dot mr-1"></i> Fácil Acceso</span>
+<h2 class="font-serif text-3xl sm:text-5xl font-bold text-white mb-4">¿Cómo Llegar al Hotel Beirut?</h2>
+<div class="w-20 h-1 bg-gold-500 mx-auto rounded-full mb-6"></div>
+<p class="text-slate-300 text-base">Nuestra dirección
+📍 Hotel Beirut Oruro
+Av. 6 de Agosto entre calles Aroma y Rodríguez
+Oruro, Bolivia. Consulta el mapa interactivo o mira el vídeo explicativo de la ruta.</p>
+</div>
+<!-- Grid Doble: Google Maps e Instrucciones en Vídeo -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
+<!-- Caja 1: Google Maps Interactivo -->
+<div class="bg-slate-950 border border-slate-800 rounded-3xl p-6 shadow-2xl flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-4">
+<h3 class="font-serif text-xl font-bold text-white flex items-center gap-2">
+<i class="fa-solid fa-location-dot text-gold-400"></i> Mapa en Google Maps
+                            </h3>
+<span class="bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-[11px] font-semibold px-2.5 py-0.5 rounded-full">
+                                Zona Céntrica
+                            </span>
+</div>
+<p class="text-xs text-slate-400 mb-4">Dirección: Av. 6 de Agosto, Oruro - Bolivia</p>
+<!-- Embed Google Maps -->
+<div class="w-full h-80 rounded-2xl overflow-hidden border border-slate-800 shadow-inner relative bg-slate-900">
+<iframe allowfullscreen="" class="w-full h-full border-0 filter brightness-90 contrast-110" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Hotel+Beirut+Oruro,+Av.+6+de+Agosto,+Oruro,+Bolivia&output=embed">
+</iframe>
+</div>
+</div>
+<div class="mt-6 flex flex-wrap gap-3">
+<a class="flex-1 bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-700 text-xs font-semibold py-3 px-4 rounded-xl text-center flex items-center justify-center gap-2 transition-colors" href="https://maps.app.goo.gl/7UdKaWzNov4QipiQ6" target="_blank">
+<i class="fa-solid fa-arrow-up-right-from-square text-gold-400"></i> Abrir en Google Maps
+                        </a>
+</div>
+</div>
+<!-- Caja 2: Vídeo Guía "Cómo Llegar paso a paso" -->
+<div class="bg-slate-950 border border-slate-800 rounded-3xl p-6 shadow-2xl flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-4">
+<h3 class="font-serif text-xl font-bold text-white flex items-center gap-2">
+<i class="fa-solid fa-video text-gold-400"></i> Vídeo Guía de Llegada
+                            </h3>
+<span class="bg-gold-500/20 text-gold-400 border border-gold-500/30 text-[11px] font-semibold px-2.5 py-0.5 rounded-full">
+                                Ruta en Vídeo
+                            </span>
+</div>
+<!-- Vídeo Reproductor Explicativo -->
+<div class="w-full h-80 rounded-2xl overflow-hidden border border-slate-800 shadow-inner relative bg-slate-900">
+<video controls width="100%">
+  <source src="videos/video%202.mp4" type="video/mp4">
+</video>
+</div>
+<!-- Indicaciones rápidas -->
+<div class="mt-6 grid grid-cols-2 gap-3 text-xs">
+<div class="bg-slate-900 border border-slate-800 p-3 rounded-xl flex items-center gap-2">
+<i class="fa-solid fa-bus text-gold-400 text-base"></i>
+<div>
+<span class="text-slate-400 text-[11px]">A solo 5 min en taxi</span>
+</div>
+</div>
+<div class="bg-slate-900 border border-slate-800 p-3 rounded-xl flex items-center gap-2">
+<i class="fa-solid fa-plane text-gold-400 text-base"></i>
+<div>
+<strong class="block text-white">Desde Aeropuerto</strong>
+<span class="text-slate-400 text-[11px]">15 min en vehículo</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section><section class="py-24 bg-slate-950 relative border-t border-slate-800 page-section" id="contacto" style="display:none;">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+<!-- Datos de Recepción -->
+<div class="lg:col-span-5 space-y-8">
+<div>
+<span class="text-gold-400 text-xs font-semibold uppercase tracking-widest block mb-2"><i class="fa-solid fa-headset mr-1"></i> Estamos para Atenderle</span>
+<h2 class="font-serif text-3xl sm:text-4xl font-bold text-white mb-4">Contacto Directo con Recepción</h2>
+<p class="text-slate-400 text-sm leading-relaxed">
+                            Resuelva sus dudas al instante o coordine su reserva directamente con nuestro equipo recepcionista disponible las 24 horas del día.
+                        </p>
+</div>
+<div class="space-y-4">
+<div class="bg-slate-900/80 border border-slate-800 p-5 rounded-2xl flex items-start gap-4 hover:border-gold-500/40 transition-colors">
+<div class="w-12 h-12 rounded-xl bg-gold-500/10 text-gold-400 flex items-center justify-center text-xl shrink-0">
+<i class="fa-solid fa-phone"></i>
+</div>
+<div>
+<h4 class="font-bold text-white text-sm">Teléfono Fijo Recepción</h4>
+<p class="text-slate-300 text-sm mt-0.5">+591 (2) 525-1234 / +591 (2) 525-5678</p>
+<span class="text-[11px] text-emerald-400 mt-1 block"><i class="fa-solid fa-circle text-[8px] mr-1"></i> Línea Activa 24h</span>
+</div>
+</div>
+<div class="bg-slate-900/80 border border-slate-800 p-5 rounded-2xl flex items-start gap-4 hover:border-gold-500/40 transition-colors">
+<div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xl shrink-0">
+<i class="fa-brands fa-whatsapp"></i>
+</div>
+<div>
+<h4 class="font-bold text-white text-sm">WhatsApp de Recepción</h4>
+<p class="text-slate-300 text-sm mt-0.5">+591 73395975</p>
+<a class="text-[12px] text-gold-400 hover:underline font-semibold mt-1 inline-block" href="https://wa.me/59171234567?text=Hola,%20quisiera%20información%20sobre%20las%20habitaciones" target="_blank">
+                                    Enviar mensaje inmediato →
+                                </a>
+</div>
+</div>
+<div class="bg-slate-900/80 border border-slate-800 p-5 rounded-2xl flex items-start gap-4 hover:border-gold-500/40 transition-colors">
+<div class="w-12 h-12 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center text-xl shrink-0">
+<i class="fa-solid fa-envelope"></i>
+</div>
+<div>
+<h4 class="font-bold text-white text-sm">Correo Electrónico</h4>
+<p class="text-slate-300 text-sm mt-0.5">hotelbeirut.or\@hotmail.com</p>
+<p class="text-[11px] text-slate-500">Respuesta promedio en menos de 1 hora</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Formulario de Consulta / Reserva -->
+<div class="lg:col-span-7">
+<div class="bg-slate-900 border border-slate-800 p-8 rounded-3xl shadow-2xl relative">
+<h3 class="font-serif text-2xl font-bold text-white mb-2">Envíanos un Mensaje</h3>
+<p class="text-xs text-slate-400 mb-6">Rellene el formulario para consultar disponibilidad o requerimientos especiales.</p>
+<form class="space-y-4" onsubmit="handleFormSubmit(event)">
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+<div>
+<label class="block text-xs uppercase font-semibold text-slate-300 mb-1">Nombre Completo \*</label>
+<input class="w-full bg-slate-950 border border-slate-800 text-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-gold-500" placeholder="Ej. Carlos Mendoza" required="" type="text"/>
+</div>
+<div>
+<label class="block text-xs uppercase font-semibold text-slate-300 mb-1">Teléfono / WhatsApp \*</label>
+<input class="w-full bg-slate-950 border border-slate-800 text-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-gold-500" placeholder="+591 70000000" required="" type="tel"/>
+</div>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+<div>
+<label class="block text-xs uppercase font-semibold text-slate-300 mb-1">Tipo de Habitación</label>
+<select id="contacto-room" name="tipo_habitacion" class="w-full bg-slate-950 border border-slate-800 text-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-gold-500">
+<option value="Individual">Individual</option>
+<option value="Doble o Matrimonial">Doble o Matrimonial</option>
+<option value="Familiar">Familiar</option>
+<option value="Suite">Suite</option>
+</select>
+</div>
+<div>
+<label class="block text-xs uppercase font-semibold text-slate-300 mb-1">Fecha de Llegada</label>
+<input class="w-full bg-slate-950 border border-slate-800 text-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-gold-500" type="date"/>
+</div>
+</div>
+<div>
+<label class="block text-xs uppercase font-semibold text-slate-300 mb-1">Mensaje o Solicitud Especial</label>
+<textarea class="w-full bg-slate-950 border border-slate-800 text-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-gold-500" placeholder="Indíquenos hora estimada de llegada o requerimientos adicionales..." rows="4"></textarea>
+</div>
+<button class="w-full bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-600 hover:to-gold-700 text-slate-950 font-bold py-3.5 rounded-xl text-sm shadow-lg transition-all hover:scale-[1.01] flex items-center justify-center gap-2" type="submit">
+<i class="fa-solid fa-paper-plane"></i> Enviar Mensaje a Recepción
+                            </button>
+</form>
+</div>
+</div>
+</div>
+</div>
+</section><footer class="bg-slate-950 border-t border-slate-800 py-12 text-slate-400 text-xs">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+<div class="space-y-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-gold-500 text-slate-950 font-serif font-bold flex items-center justify-center text-lg">B</div>
+<span class="font-serif text-lg font-bold text-white tracking-wider">HOTEL BEIRUT</span>
+</div>
+<p class="text-slate-400 text-xs leading-relaxed">
+                        Comprometidos con brindarle una experiencia memorable y confortable. El mejor descanso en la ciudad.
+                    </p>
+</div>
+<div>
+<h5 class="text-white font-bold mb-3 uppercase tracking-wider text-xs">Navegación Rápida</h5>
+<ul class="space-y-2">
+<li><a class="hover:text-gold-400 transition-colors" href="#inicio" onclick="showPage('inicio'); return false;">Inicio</a></li>
+<li><a class="hover:text-gold-400 transition-colors" href="#historia" onclick="showPage('historia'); return false;">Historia &amp; Fundadores</a></li>
+<li><a class="hover:text-gold-400 transition-colors" href="#habitaciones" onclick="showPage('habitaciones'); return false;">Habitaciones</a></li>
+<li><a class="hover:text-gold-400 transition-colors" href="#tarifas" onclick="showPage('tarifas'); return false;">Tarifas</a></li>
+<li><a class="hover:text-gold-400 transition-colors" href="#ubicacion" onclick="showPage('ubicacion'); return false;">Ubicación / Cómo Llegar</a></li>
+</ul>
+</div>
+<div>
+<h5 class="text-white font-bold mb-3 uppercase tracking-wider text-xs">Atención al Cliente</h5>
+<ul class="space-y-2">
+<li><i class="fa-solid fa-clock text-gold-400 mr-2"></i> Recepción 24 Horas</li>
+<li><i class="fa-solid fa-shield text-gold-400 mr-2"></i> Reservas Seguras</li>
+<li><i class="fa-solid fa-parking text-gold-400 mr-2"></i> Estacionamiento Gratuito</li>
+</ul>
+</div>
+<div>
+<h5 class="text-white font-bold mb-3 uppercase tracking-wider text-xs">Síguenos</h5>
+<div class="flex gap-3">
+<a class="w-9 h-9 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-300 hover:text-gold-400 hover:border-gold-500 transition-colors" href="#"><i class="fa-brands fa-facebook-f"></i></a>
+<a class="w-9 h-9 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-300 hover:text-gold-400 hover:border-gold-500 transition-colors" href="https://www.instagram.com/hotelbeirut?xtok=dTltcGIwOWRqeXc0" target="_blank" rel="noopener noreferrer" aria-label="Instagram de Hotel Beirut"><i class="fa-brands fa-instagram"></i></a>
+<a class="w-9 h-9 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-300 hover:text-gold-400 hover:border-gold-500 transition-colors" href="https://www.tiktok.com/@hotelbeirutoruro?_r=1&_t=ZS-9ASPLdR6AAW" target="_blank" rel="noopener noreferrer" aria-label="TikTok de Hotel Beirut"><i class="fa-brands fa-tiktok"></i></a>
+</div>
+</div>
+</div>
+<div class="pt-8 border-t border-slate-900 text-center flex flex-col sm:flex-row items-center justify-between gap-4">
+<p>© 2026 Hotel Beirut. Todos los derechos reservados.</p>
+<p class="text-slate-500">Diseñado para Hospitalidad de Excelencia.</p>
+</div>
+</div>
+</footer><div class="fixed bottom-6 right-6 z-50 flex flex-col gap-3 items-end">
+<!-- Tooltip indicativo -->
+<div class="bg-slate-900/95 text-white text-xs px-3 py-1.5 rounded-lg border border-slate-700 shadow-xl mb-1 flex items-center gap-2 animate-bounce" id="contact-tooltip">
+<span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+<span>¿Necesitas ayuda? <strong>Recepción en línea</strong></span>
+<button class="ml-2 text-slate-400 hover:text-white" onclick="document.getElementById('contact-tooltip').remove()">×</button>
+</div>
+<!-- Botón Flotante de WhatsApp Recepción -->
+<a aria-label="Contactar por WhatsApp" class="pulse-btn w-14 h-14 bg-emerald-500 hover:bg-emerald-600 text-white rounded-full flex items-center justify-center text-2xl shadow-2xl transition-all hover:scale-110 relative group" href="https://wa.me/59177153653?text=Hola%20Recepcion%20Hotel%20Beirut,%20quisiera%20consultar%20disponibilidad" target="_blank">
+<i class="fa-brands fa-whatsapp"></i>
+<span class="absolute right-16 top-2 bg-slate-900 text-white text-xs px-2.5 py-1 rounded-md opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap border border-slate-700 shadow-lg pointer-events-none">
+                WhatsApp Recepción
+            </span>
+</a>
+<!-- Botón Flotante de Llamada Directa a Recepción -->
+<a aria-label="Llamar a Recepción" class="phone-pulse w-14 h-14 bg-sky-500 hover:bg-sky-600 text-white rounded-full flex items-center justify-center text-2xl shadow-2xl transition-all hover:scale-110 relative group" href="tel:+59177153653">
+<i class="fa-solid fa-phone font-bold"></i>
+<span class="absolute right-16 top-2 bg-slate-900 text-white text-xs px-2.5 py-1 rounded-md opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap border border-slate-700 shadow-lg pointer-events-none">
+                Llamar a Recepción
+            </span>
+</a>
+<!-- Botón flotante de Instagram del Hotel Beirut -->
+<a aria-label="Visitar Instagram del Hotel Beirut" title="Instagram Hotel Beirut" class="w-14 h-14 text-white rounded-full flex items-center justify-center text-2xl shadow-lg transition-all hover:scale-110 relative group" href="https://www.instagram.com/hotelbeirut?xtok=dTltcGIwOWRqeXc0" target="_blank" rel="noopener noreferrer" style="background:linear-gradient(45deg,#feda75,#fa7e1e,#d62976,#962fbf,#4f5bd5);text-decoration:none;">
+<i class="fa-brands fa-instagram"></i>
+<span class="absolute right-16 top-2 bg-slate-900 text-white text-xs px-2.5 py-1 rounded-md opacity-0 group-hover:opacity-100 whitespace-nowrap border border-slate-700 pointer-events-none">Instagram Hotel Beirut</span>
+</a>
+<!-- Botón flotante de TikTok del Hotel Beirut -->
+<a aria-label="Visitar TikTok del Hotel Beirut" title="TikTok Hotel Beirut" class="w-14 h-14 bg-black hover:bg-slate-800 text-white rounded-full flex items-center justify-center text-2xl shadow-lg transition-all hover:scale-110 relative group" href="https://www.tiktok.com/@hotelbeirutoruro?_r=1&_t=ZS-9ASPLdR6AAW" target="_blank" rel="noopener noreferrer" style="text-decoration:none;">
+<i class="fa-brands fa-tiktok"></i>
+<span class="absolute right-16 top-2 bg-slate-900 text-white text-xs px-2.5 py-1 rounded-md opacity-0 group-hover:opacity-100 whitespace-nowrap border border-slate-700 pointer-events-none">TikTok Hotel Beirut</span>
+</a>
+<!-- Botón flotante de Facebook del Hotel Beirut -->
+<a aria-label="Visitar Facebook del Hotel Beirut" title="Facebook Hotel Beirut" class="w-14 h-14 bg-blue-600 hover:bg-blue-700 text-white rounded-full flex items-center justify-center text-2xl shadow-lg transition-all relative group" href="https://www.facebook.com/share/1KgGp5LBBb/" target="_blank" rel="noopener noreferrer" style="background:#1877f2;color:white;text-decoration:none;">
+<i class="fa-brands fa-facebook-f"></i>
+<span class="absolute right-16 top-2 bg-slate-900 text-white text-xs px-2.5 py-1 rounded-md opacity-0 group-hover:opacity-100 whitespace-nowrap border border-slate-700 pointer-events-none">Facebook Hotel Beirut</span>
+</a>
+</div><div class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md hidden items-center justify-center p-4" id="reserva-modal">
+<div class="bg-slate-900 border border-slate-800 rounded-3xl max-w-lg w-full p-6 sm:p-8 relative shadow-2xl">
+<button class="absolute top-5 right-5 text-slate-400 hover:text-white text-2xl" onclick="closeReservaModal()">
+<i class="fa-solid fa-xmark"></i>
+</button>
+<div class="text-center mb-6">
+<div class="w-12 h-12 rounded-full bg-gold-500/20 text-gold-400 flex items-center justify-center mx-auto mb-2 text-xl">
+<i class="fa-solid fa-calendar-check"></i>
+</div>
+<h3 class="font-serif text-2xl font-bold text-white">Solicitud de Reserva</h3>
+<p class="text-xs text-slate-400 mt-1">Recepción confirmará su habitación vía WhatsApp o teléfono.</p>
+</div>
+<form class="space-y-4" onsubmit="handleModalSubmit(event)">
+<div>
+<label class="block text-xs uppercase font-semibold text-slate-300 mb-1">Habitación Seleccionada</label>
+<input class="w-full bg-slate-950 border border-slate-800 text-gold-400 font-bold rounded-xl px-4 py-2.5 text-sm" id="modal-room-type" readonly="" type="text" value="Suite Matrimonial Executive"/>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<div>
+<label class="block text-xs uppercase font-semibold text-slate-300 mb-1">Tu Nombre</label>
+<input class="w-full bg-slate-950 border border-slate-800 text-white rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-gold-500" placeholder="Nombre completo" required="" type="text"/>
+</div>
+<div>
+<label class="block text-xs uppercase font-semibold text-slate-300 mb-1">Teléfono</label>
+<input class="w-full bg-slate-950 border border-slate-800 text-white rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-gold-500" placeholder="WhatsApp" required="" type="tel"/>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<div>
+<label class="block text-xs uppercase font-semibold text-slate-300 mb-1">Fecha Entrada</label>
+<input class="w-full bg-slate-950 border border-slate-800 text-white rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-gold-500" required="" type="date"/>
+</div>
+<div>
+<label class="block text-xs uppercase font-semibold text-slate-300 mb-1">Fecha Salida</label>
+<input class="w-full bg-slate-950 border border-slate-800 text-white rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-gold-500" required="" type="date"/>
+</div>
+</div>
+<button class="w-full bg-gold-500 hover:bg-gold-600 text-slate-950 font-bold py-3 rounded-xl text-sm transition-all shadow-lg mt-2" type="submit">
+                    Confirmar con Recepción
+                </button>
+</form>
+</div>
+</div><div class="fixed top-24 right-6 z-50 bg-slate-800 border border-gold-500 text-white px-5 py-3 rounded-2xl shadow-2xl hidden items-center gap-3 transition-all duration-300" id="toast-notification">
+<i class="fa-solid fa-circle-check text-gold-400 text-xl"></i>
+<div>
+<h5 class="font-bold text-sm" id="toast-title">¡Mensaje Enviado!</h5>
+<p class="text-xs text-slate-300" id="toast-body">La recepción se comunicará en breve contigo.</p>
+</div>
+</div><script>
+function showSection(pageId) {
+    showPage(pageId);
+}
+
+function showPage(pageId) {
+    document.querySelectorAll('.page-section').forEach(function(section) {
+        section.classList.remove('active');
+        section.style.display = 'none';
+    });
+    const target = document.getElementById(pageId);
+    if (target) {
+        target.classList.add('active');
+        target.style.display = 'block';
+    }
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuIcon = document.getElementById('menu-icon');
+    if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+        mobileMenu.classList.add('hidden');
+        if (menuIcon) menuIcon.className = 'fa-solid fa-bars';
+    }
+    window.scrollTo({top: 0, behavior: 'smooth'});
+    history.replaceState(null, '', '#' + pageId);
+}
+
+function loadPageFromHash() {
+    const id = location.hash ? location.hash.substring(1) : 'inicio';
+    const valid = ['inicio','historia','habitaciones','tarifas','servicios','ubicacion','contacto'];
+    showPage(valid.includes(id) ? id : 'inicio');
+}
+window.addEventListener('hashchange', loadPageFromHash);
+</script><script>document.addEventListener('DOMContentLoaded', loadPageFromHash);</script>
+<script>
+const fotosCarnaval = [
+ {src:'https://commons.wikimedia.org/wiki/Special:FilePath/Carnaval_de_Oruro.jpg?width=1200',titulo:'Viva la magia del Carnaval de Oruro',texto:'Música, danza y tradición a pocos pasos de una estadía cómoda.'},
+ {src:'https://commons.wikimedia.org/wiki/Special:FilePath/El_carnaval_de_Oruro.jpg?width=1200',titulo:'Colores y tradición',texto:'Ven a disfrutar una de las fiestas culturales más conocidas de Bolivia.'},
+ {src:'https://commons.wikimedia.org/wiki/Special:FilePath/Morenada_del_Carnaval_de_Oruro.jpg?width=1200',titulo:'Vive el Carnaval de cerca',texto:'Reserva tu habitación y disfruta la cultura de Oruro.'}
+];
+let indiceCarnaval=0;
+function irCarnaval(i){indiceCarnaval=(i+fotosCarnaval.length)%fotosCarnaval.length;const img=document.getElementById('carnaval-slide');const title=document.getElementById('carnaval-title');const textEl=document.getElementById('carnaval-text');if(img){img.src=fotosCarnaval[indiceCarnaval].src;img.alt=fotosCarnaval[indiceCarnaval].titulo;}if(title)title.textContent=fotosCarnaval[indiceCarnaval].titulo;if(textEl)textEl.textContent=fotosCarnaval[indiceCarnaval].texto;}
+function cambiarCarnaval(d){irCarnaval(indiceCarnaval+d)}
+setInterval(()=>{if(document.getElementById('carnaval-slide'))cambiarCarnaval(1)},5000);
+function irAContacto(btn){const roomName=btn && btn.dataset ? btn.dataset.room : '';irAContactoNombre(roomName);}
+function irAContactoNombre(roomName){showPage('contacto');const asunto=document.getElementById('contacto-room');if(!asunto||!roomName)return;const nombre=roomName.toLowerCase();if(nombre.includes('individual'))asunto.value='Individual';else if(nombre.includes('doble')||nombre.includes('matrimonial'))asunto.value='Doble o Matrimonial';else if(nombre.includes('triple')||nombre.includes('suite'))asunto.value='Suite';else if(nombre.includes('familiar'))asunto.value='Familiar';else asunto.value=roomName;}
+function elegirTarifa(tipo){irAContactoNombre(tipo);}
+document.addEventListener('DOMContentLoaded',function(){document.querySelectorAll('.room-flip-card').forEach(function(card){card.addEventListener('click',function(e){if(!e.target.closest('button'))card.classList.toggle('flipped')});card.setAttribute('role','button');card.setAttribute('tabindex','0');card.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();card.classList.toggle('flipped')}})});});
+function toggleMobileMenu(){const menu=document.getElementById('mobile-menu');const icon=document.getElementById('menu-icon');if(menu){menu.classList.toggle('hidden');if(icon)icon.className=menu.classList.contains('hidden')?'fa-solid fa-bars':'fa-solid fa-xmark';}}
+function openReservaModal(roomName){const modal=document.getElementById('reserva-modal');if(!modal)return;if(roomName){const field=document.getElementById('modal-room-type');if(field)field.value=roomName;}modal.classList.remove('hidden');modal.classList.add('flex');}
+function closeReservaModal(){const modal=document.getElementById('reserva-modal');if(modal){modal.classList.add('hidden');modal.classList.remove('flex');}}
+function handleQuickSearch(event){event.preventDefault();showPage('contacto');}
+function handleModalSubmit(event){event.preventDefault();const form=event.target;const vals=Array.from(form.querySelectorAll('input')).map(i=>i.value);const message='Hola, quiero consultar una reserva en Hotel Beirut. Habitación: '+(vals[0]||'Por definir')+'. Nombre: '+(vals[1]||'')+'. Teléfono: '+(vals[2]||'')+'. Entrada: '+(vals[3]||'')+'. Salida: '+(vals[4]||'')+'.';window.open('https://wa.me/59177153653?text='+encodeURIComponent(message),'_blank');closeReservaModal();}
+</script>
+
+</body></html>
